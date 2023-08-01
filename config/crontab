@@ -1,0 +1,17 @@
+#! /bin/bash
+#crontab
+
+# Turn on the display at 8:45 AM
+# && xset s off # ensure that the display stays on even during inactivity, you can remove the screensaver command ?
+44 8 * * * export DISPLAY=:0 && xset -dpms
+
+# fetch the morning paper
+45 8 * * * /home/ubuntu/src/nyt/fetch
+# enough paper
+0 10 * * * pkill evince
+
+# display art
+0 10 * * * python3 /home/ubuntu/src/art/main.py
+
+# Turn off the display at 10:30 PM
+30 20 * * * export DISPLAY=:0 && xset dpms force off
