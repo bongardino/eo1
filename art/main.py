@@ -6,7 +6,7 @@ import time
 import urllib.request
 import os
 
-API_KEY = ""
+API_KEY = os.environ.get("API_KEY")
 BASE_URL = "https://api.harvardartmuseums.org/object"
 CLASSES = ['paintings', 'prints', 'drawings', 'photographs']
 PAGE_PATH = os.path.join(dir, 'frame.html')
@@ -85,12 +85,12 @@ def replace_url_in_html_file(file_path, new_url):
 if __name__ == "__main__":
     artwork = find_artwork_with_proper_dimensions()
     if artwork:
-        try:
-            # Execute the command and capture the output
-            output = subprocess.check_output('pkill -o chromium', shell=True)
-            print(output)
-        except subprocess.CalledProcessError as e:
-            print("Error executing the command:", e)
+        # try:
+        #     # Execute the command and capture the output
+        #     output = subprocess.check_output('pkill -o chromium', shell=True)
+        #     print(output)
+        # except subprocess.CalledProcessError as e:
+        #     print("Error executing the command:", e)
 
         print("Title:", artwork.get("title"))
         artist = artwork.get("people", [{}])[0]

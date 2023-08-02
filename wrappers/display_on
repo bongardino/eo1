@@ -1,0 +1,6 @@
+#! /bin/bash
+
+# && xset s off # ensure that the display stays on even during inactivity, you can remove the screensaver command ?
+# I dont think I have a screensaver
+
+export DISPLAY=:0 && xset -dpms

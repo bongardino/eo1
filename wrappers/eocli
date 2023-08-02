@@ -1,0 +1,37 @@
+#! /bin/bash
+
+source load_secrets
+export DISPLAY=:0
+
+run_dir=$(dirname "$0")
+
+# eo1 GPU is limited to a single fullscreen process
+_pkills() {
+  pkill -o chromium
+  pkill evince
+}
+
+case "$1" in
+  "on")
+    xset -dpms
+    echo 'display on'
+    ;;
+  "off")
+    xset dpms force off
+    echo 'display off'
+    ;;
+  "art")
+    _pkills
+    /usr/bin/python3 main.py
+    echo 'art up'
+    ;;
+  "news")
+    _pkills
+    ./news
+    echo 'news up'
+    ;;
+  *)
+    _pkills
+    echo 'invalid input'
+    ;;
+esac
