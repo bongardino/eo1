@@ -5,15 +5,13 @@
 @reboot /usr/bin/unclutter -idle 0.01 -root &
 
 # Turn on the display at 8 AM
-0 8 * * * /home/ubuntu/src/power/display_on
+0 8 * * * /home/ubuntu/src/eo1/cli on
 
 # fetch the morning paper
-45 8 * * * /home/ubuntu/src/nyt/fetch
-# enough paper
-0 10 * * * pkill evince
+0 8 * * * /home/ubuntu/src/eo1/cli news
 
 # display art
-0 10 * * * /usr/bin/python3 /home/ubuntu/src/art/main.py
+0 10 * * * /home/ubuntu/src/eo1/cli art
 
 # Turn off the display at 10:30 PM
-30 20 * * * /home/ubuntu/src/power/display_off
+30 20 * * * /home/ubuntu/src/eo1/off

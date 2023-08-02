@@ -21,6 +21,7 @@ apt-get install -y --no-install-recommends \
   # curl \
   # kmscube \
 
-# TODO: gradually change in cron, ie $ sudo tee /sys/class/backlight/acpi_video0/brightness <<< 6
+# TODO: gradually change in cron, ie $ sudo tee /sys/class/backlight/backlight-pwm1/brightness <<< 6
 # backlight control
-nano /sys/class/backlight/backlight-pwm1/brightness
+# sudo cron, not user
+# sudo nano /sys/class/backlight/backlight-pwm1/brightness

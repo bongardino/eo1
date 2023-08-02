@@ -1,9 +1,9 @@
 #! /bin/bash
 
+run_dir=$(dirname "$0")
+pushd "$run_dir" > /dev/null || exit 1
 source load_secrets
 export DISPLAY=:0
-
-run_dir=$(dirname "$0")
 
 # eo1 GPU is limited to a single fullscreen process
 _pkills() {
@@ -11,9 +11,13 @@ _pkills() {
   pkill evince
 }
 
+_display_on() {
+  xset -dpms
+}
+
 case "$1" in
   "on")
-    xset -dpms
+    _display_on
     echo 'display on'
     ;;
   "off")
@@ -22,16 +26,21 @@ case "$1" in
     ;;
   "art")
     _pkills
-    /usr/bin/python3 main.py
-    echo 'art up'
+    _display_on
+    /usr/bin/python3 art.py
     ;;
   "news")
     _pkills
+    _display_on
     ./news
-    echo 'news up'
+    ;;
+  "brightness")
+    _display_on
+    ./brightness "$2"
     ;;
   *)
-    _pkills
     echo 'invalid input'
     ;;
 esac
+
+popd > /dev/null || exit 1

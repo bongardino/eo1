@@ -1,0 +1,30 @@
+#!/bin/bash
+
+set_brightness() {
+  # backlight="/sys/class/backlight/backlight-pwm1/actual_brightness"
+  luminosity=$1
+
+  # echo "$luminosity" > "$backlight"
+  echo "Let there be light: $luminosity"
+}
+
+# Validate the argument to be within the range 1 to 10
+if [ "$#" -ne 1 ]; then
+  echo "Usage: $0 <brightness_value>"
+  exit 1
+fi
+
+brightness_value=$1
+
+if ! [[ "$brightness_value" =~ ^[0-9]+$ ]]; then
+  echo "Error: The brightness value must be a positive integer."
+  exit 1
+fi
+
+if (( brightness_value < 1 || brightness_value > 10 )); then
+  echo "Error: The brightness value must be within the range 1 to 10."
+  exit 1
+fi
+
+# Call the function with the validated brightness value
+set_brightness "$brightness_value"

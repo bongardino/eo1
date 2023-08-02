@@ -6,12 +6,12 @@ import time
 import urllib.request
 import os
 
+base_dir = os.path.dirname(__file__)
 API_KEY = os.environ.get("API_KEY")
 BASE_URL = "https://api.harvardartmuseums.org/object"
 CLASSES = ['paintings', 'prints', 'drawings', 'photographs']
-PAGE_PATH = os.path.join(dir, 'frame.html')
+PAGE_PATH = os.path.join(base_dir, 'frame.html')
 cache = {}
-dir = os.path.dirname(__file__)
 
 def random_classification():
     if 'classification' not in cache:
@@ -85,13 +85,6 @@ def replace_url_in_html_file(file_path, new_url):
 if __name__ == "__main__":
     artwork = find_artwork_with_proper_dimensions()
     if artwork:
-        # try:
-        #     # Execute the command and capture the output
-        #     output = subprocess.check_output('pkill -o chromium', shell=True)
-        #     print(output)
-        # except subprocess.CalledProcessError as e:
-        #     print("Error executing the command:", e)
-
         print("Title:", artwork.get("title"))
         artist = artwork.get("people", [{}])[0]
         print("Artist:", artist.get("displayname"))
@@ -102,7 +95,8 @@ if __name__ == "__main__":
 
         replace_url_in_html_file(PAGE_PATH, image_data.get("baseimageurl"))
         try:
-            output = subprocess.check_output(f'chromium-browser {PAGE_PATH} --start-fullscreen', shell=True)
+            output = subprocess.check_output(f'open {PAGE_PATH}', shell=True)
+            # output = subprocess.check_output(f'chromium-browser {PAGE_PATH} --start-fullscreen', shell=True)
             print(output)
         except subprocess.CalledProcessError as e:
             print("Error executing the command:", e)
