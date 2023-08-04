@@ -1,7 +1,6 @@
 import json
 import random
 import re
-import subprocess
 import time
 import urllib.request
 import os
@@ -94,11 +93,5 @@ if __name__ == "__main__":
         print("Height:", image_data.get("height"))
 
         replace_url_in_html_file(PAGE_PATH, image_data.get("baseimageurl"))
-        try:
-            output = subprocess.check_output(f'open {PAGE_PATH}', shell=True)
-            # output = subprocess.check_output(f'chromium-browser {PAGE_PATH} --start-fullscreen', shell=True)
-            print(output)
-        except subprocess.CalledProcessError as e:
-            print("Error executing the command:", e)
     else:
         print("No artwork found that meets the requirements.")

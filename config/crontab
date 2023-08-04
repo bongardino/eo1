@@ -3,9 +3,12 @@
 
 # hide the cursor if it hasn't moved
 @reboot /usr/bin/unclutter -idle 0.01 -root &
+@reboot sleep 10 && /home/ubuntu/src/eo1/cli brightness 7
+@reboot sleep 12 && /home/ubuntu/src/eo1/cli news
 
 # Turn on the display at 8 AM
 0 8 * * * /home/ubuntu/src/eo1/cli on
+0 8 * * * /home/ubuntu/src/eo1/cli brightness 7
 
 # fetch the morning paper
 0 8 * * * /home/ubuntu/src/eo1/cli news
@@ -13,5 +16,8 @@
 # display art
 0 10 * * * /home/ubuntu/src/eo1/cli art
 
-# Turn off the display at 10:30 PM
-30 20 * * * /home/ubuntu/src/eo1/off
+# Dim a bit
+0 20 * * * /home/ubuntu/src/eo1/cli brightness 5
+
+# Turn off the display at 11 PM
+0 23 * * * /home/ubuntu/src/eo1/off

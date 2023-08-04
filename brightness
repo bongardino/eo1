@@ -1,11 +1,15 @@
 #!/bin/bash
 
+if [ "$EUID" -ne 0 ]; then
+    echo "This script requires root, run it with sudo."
+    exit 1
+fi
+
 set_brightness() {
-  # backlight="/sys/class/backlight/backlight-pwm1/actual_brightness"
+  backlight="/sys/class/backlight/backlight-pwm1/brightness"
   luminosity=$1
 
-  # echo "$luminosity" > "$backlight"
-  echo "Let there be light: $luminosity"
+  echo "$luminosity" > "$backlight"
 }
 
 # Validate the argument to be within the range 1 to 10

@@ -1,0 +1,42 @@
+#!/bin/bash
+
+BASE_URL="https://picsum.photos/1080/1920"
+HTML_FILE="photo.html"
+
+create_html_file() {
+  local url="$1"
+  cat <<EOF >$HTML_FILE
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Random</title>
+  <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+
+<body>
+  <div class="image-container">
+    <img src="$url">
+  </div>
+</body>
+
+</html>
+EOF
+}
+
+randomize_filter() {
+  local list=("?grayscale" "") # "?blur" is also an option, "" is no filter
+  local length=${#list[@]}
+  local random_index=$((RANDOM % length))
+
+  echo "${list[random_index]}"
+}
+
+rm -rf $HTML_FILE
+style=$(randomize_filter)
+url="${BASE_URL}${style}"
+create_html_file "$url"
+
+echo "$url"
+# open $HTML_FILE &> /dev/null &
+chromium-browser $HTML_FILE --start-fullscreen &> /dev/null &

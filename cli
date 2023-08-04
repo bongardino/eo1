@@ -24,19 +24,25 @@ case "$1" in
     xset dpms force off
     echo 'display off'
     ;;
+  "brightness")
+    _display_on
+    echo "$ROOT_PW" | sudo -S ./brightness "$2"
+    ;;
   "art")
     _pkills
     _display_on
     /usr/bin/python3 art.py
+    chromium-browser frame.html --start-fullscreen &> /dev/null &
     ;;
   "news")
     _pkills
     _display_on
     ./news
     ;;
-  "brightness")
+  "photo")
+    _pkills
     _display_on
-    ./brightness "$2"
+    ./photo
     ;;
   *)
     echo 'invalid input'
