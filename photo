@@ -10,7 +10,7 @@ create_html_file() {
 <html>
 
 <head>
-  <title>Random</title>
+  <title>Photo</title>
   <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 
