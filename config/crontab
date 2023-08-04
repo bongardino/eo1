@@ -1,7 +1,7 @@
 #! /bin/bash
 # crontab -e as ubuntu
 
-# hide the cursor if it hasn't moved
+# hide the cursor if it hasn't moved, then reset
 @reboot /usr/bin/unclutter -idle 0.01 -root &
 @reboot sleep 10 && /home/ubuntu/src/eo1/cli brightness 7
 @reboot sleep 12 && /home/ubuntu/src/eo1/cli news

@@ -14,7 +14,6 @@ apt-get install -y --no-install-recommends \
   cron \
   wget \
   python3.6 \
-  kmscube \
   libxcb-dri3-dev \
   x11proto-dri3-dev \
   unclutter
