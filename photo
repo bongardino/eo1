@@ -10,7 +10,6 @@ create_html_file() {
 <html>
 
 <head>
-  <title>Photo</title>
   <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 
