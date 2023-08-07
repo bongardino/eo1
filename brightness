@@ -1,4 +1,5 @@
 #!/bin/bash
+# there are several devices listed in /sys/class/backlight/ -  Keep trying until you find the correct one?
 
 if [ "$EUID" -ne 0 ]; then
     echo "This script requires root, run it with sudo."

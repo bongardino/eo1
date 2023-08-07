@@ -20,7 +20,5 @@ apt-get install -y --no-install-recommends \
   # curl \
   # kmscube \
 
-# TODO: gradually change in cron, ie $ sudo tee /sys/class/backlight/backlight-pwm1/brightness <<< 6
-# backlight control
-# sudo cron, not user
-# sudo nano /sys/class/backlight/backlight-pwm1/brightness
+# i spent so long troubleshooting cron
+timedatectl set-timezone America/New_York
