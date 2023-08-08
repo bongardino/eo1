@@ -15,4 +15,4 @@
 0 22 * * * /home/ubuntu/src/eo1/cli brightness 3
 
 # Turn off the display at 11 PM
-0 23 * * * /home/ubuntu/src/eo1/off
+0 23 * * * /home/ubuntu/src/eo1/cli off

@@ -84,10 +84,10 @@ def replace_url_in_html_file(file_path, new_url):
 if __name__ == "__main__":
     artwork = find_artwork_with_proper_dimensions()
     if artwork:
-        print("Title:", artwork.get("title"))
-        artist = artwork.get("people", [{}])[0]
-        print("Artist:", artist.get("displayname"))
         image_data = artwork.get("images", [{}])[0]
+        artist = artwork.get("people", [{}])[0]
+        print("Title:", artwork.get("title"))
+        print("Artist:", artist.get("displayname"))
         print("Image URL:", image_data.get("baseimageurl"))
         print("Width:", image_data.get("width"))
         print("Height:", image_data.get("height"))
