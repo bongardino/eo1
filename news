@@ -1,0 +1,12 @@
+#!/bin/bash
+
+PDF='scan.pdf'
+
+echo "remove yesterday..."
+rm "${PDF}"
+
+echo "download today..."
+/usr/bin/wget "https://static01.nyt.com/images/$(date +"%Y/%m/%d")/nytfrontpage/${PDF}"
+
+echo "open fullscreen..."
+/usr/bin/evince --presentation ${PDF} &> /dev/null &

@@ -1,0 +1,52 @@
+#! /bin/bash
+
+run_dir=$(dirname "$0")
+pushd "$run_dir" > /dev/null || exit 1
+source load_secrets
+export DISPLAY=:0
+
+# eo1 GPU is limited to a single fullscreen process
+_pkills() {
+  pkill -o chromium
+  pkill evince
+}
+
+_display_on() {
+  xset -dpms
+}
+
+case "$1" in
+  "on")
+    _display_on
+    echo 'display on'
+    ;;
+  "off")
+    xset dpms force off
+    echo 'display off'
+    ;;
+  "brightness")
+    _display_on
+    echo "$ROOT_PW" | sudo -S ./brightness "$2"
+    ;;
+  "art")
+    _pkills
+    _display_on
+    /usr/bin/python3 art.py
+    chromium-browser frame.html --start-fullscreen &> /dev/null &
+    ;;
+  "news")
+    _pkills
+    _display_on
+    ./news
+    ;;
+  "photo")
+    _pkills
+    _display_on
+    ./photo
+    ;;
+  *)
+    echo 'invalid input'
+    ;;
+esac
+
+popd > /dev/null || exit 1

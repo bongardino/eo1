@@ -1,0 +1,16 @@
+#! /bin/bash
+
+run_dir=$(dirname "$0")
+pushd "$run_dir" > /dev/null || exit 1
+export DISPLAY=:0
+
+# patience is a virtue
+sleep 60
+
+# hide the cursor if it hasn't moved
+/usr/bin/unclutter -idle 0.01 &
+
+/home/ubuntu/src/eo1/cli news
+/home/ubuntu/src/eo1/cli brightness 7
+
+popd > /dev/null || exit 1

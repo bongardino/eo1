@@ -51,3 +51,8 @@ https://github.com/harvardartmuseums/api-docs
 Lifted from this [helpful post](https://www.charlieharrington.com/run-linux-on-electric-objects-eo1-wall-computer/).
 Fetch the daily front page of the NYT.  
 I only display this for the first hour of my day because the news is too scary.
+
+
+## Photo
+lorum ipsum for photos:  
+https://picsum.photos/
