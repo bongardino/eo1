@@ -1,25 +1,18 @@
 import json
-import random
-import re
+import os
 import time
 import urllib.request
-import os
+from utils import random_classification, has_proper_dimensions, replace_url_in_html_file
+
 
 base_dir = os.path.dirname(__file__)
-API_KEY = os.environ.get("API_KEY")
+API_KEY = os.environ.get("HARVARD_API_KEY")
 BASE_URL = "https://api.harvardartmuseums.org/object"
 CLASSES = ['paintings', 'prints', 'drawings', 'photographs']
 PAGE_PATH = os.path.join(base_dir, 'frame.html')
-cache = {}
-
-def random_classification():
-    if 'classification' not in cache:
-        classification = random.choice(CLASSES)
-        cache['classification'] = classification
-    return cache['classification']
 
 def fetch_artworks(page):
-    classification = random_classification()
+    classification = random_classification(CLASSES)
 
     params = {
         "apikey": API_KEY,
@@ -36,13 +29,6 @@ def fetch_artworks(page):
         data = json.loads(response.read())
     return data
 
-# Ensure the image will look good in portrait mode
-def has_proper_dimensions(image_data):
-    width = image_data["width"]
-    height = image_data["height"]
-    aspect_ratio = width / height
-    return 0.5 <= aspect_ratio <= 0.6
-
 def find_artwork_with_proper_dimensions():
     page = 1
     while True:
@@ -51,7 +37,9 @@ def find_artwork_with_proper_dimensions():
         for artwork in data["records"]:
             if artwork.get("images"):
                 image_data = artwork["images"][0]
-                if has_proper_dimensions(image_data):
+                width = image_data["width"]
+                height = image_data["height"]
+                if has_proper_dimensions(width, height):
                     return artwork
 
         # Check if there are more pages to fetch
@@ -62,24 +50,6 @@ def find_artwork_with_proper_dimensions():
         else:
             # No more pages to fetch
             return None
-
-def replace_url_in_html_file(file_path, new_url):
-    try:
-        with open(file_path, 'r') as file:
-            file_content = file.read()
-
-        # find the URL
-        url_pattern = r'(https?://[^"\'>]+)'
-        updated_content = re.sub(url_pattern, new_url, file_content)
-
-        with open(file_path, 'w') as file:
-            file.write(updated_content)
-
-        print(f"URL replaced successfully in '{file_path}'.")
-    except FileNotFoundError:
-        print(f"Error: File '{file_path}' not found.")
-    except Exception as e:
-        print(f"An error occurred: {e}")
 
 if __name__ == "__main__":
     artwork = find_artwork_with_proper_dimensions()
