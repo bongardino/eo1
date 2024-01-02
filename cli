@@ -15,6 +15,13 @@ _display_on() {
   xset -dpms
 }
 
+_random_museum() {
+    museums=("harvard.py" "rijks.py")
+    num_museums=${#museums[@]}
+    random_index=$((RANDOM % num_museums))
+    echo "${museums[$random_index]}"
+}
+
 case "$1" in
   "on")
     _display_on
@@ -31,8 +38,11 @@ case "$1" in
   "art")
     _pkills
     _display_on
-    /usr/bin/python3 art.py
+    selected_museum=$(_random_museum)
+    echo "$selected_museum"
+    /usr/bin/python3 "$selected_museum"
     chromium-browser frame.html --start-fullscreen &> /dev/null &
+    # open frame.html
     ;;
   "news")
     _pkills
