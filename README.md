@@ -14,7 +14,7 @@ I used balena etcher to create a bootable drive.  Default users are ubuntu/root;
 Some additional requirements are in `config/setup`
 
 ## Art
-1. Search through predefined categories in Harvard's museum API
+1. Search through predefined categories in a selection of museum APIs
 1. Select a random image object
 1. Ensure it will look good in portrait format
 1. Display the image in a browser
@@ -24,7 +24,7 @@ The browser thing is a little hacky, but this is a flexible way to fullscreen + 
 
 ## Harvard Art API
 ### Docs
-https://github.com/harvardartmuseums/api-docs  
+https://github.com/harvardartmuseums/api-docs
 ^ request a key there
 
 

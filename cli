@@ -36,13 +36,14 @@ case "$1" in
     echo "$ROOT_PW" | sudo -S ./brightness "$2"
     ;;
   "art")
-    _pkills
-    _display_on
-    selected_museum=$(_random_museum)
-    echo "$selected_museum"
-    /usr/bin/python3 "$selected_museum"
-    chromium-browser frame.html --start-fullscreen &> /dev/null &
-    # open frame.html
+    # _pkills
+    # _display_on
+    # selected_museum=$(_random_museum)
+    # echo "$selected_museum"
+    # /usr/bin/python3 "$selected_museum"
+    /usr/bin/python3 met.py
+    # chromium-browser frame.html --start-fullscreen &> /dev/null &
+    open frame.html
     ;;
   "news")
     _pkills

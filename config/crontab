@@ -9,10 +9,10 @@
 0 10 * * * /home/ubuntu/src/eo1/cli art
 
 # Dim a bit
-0 20 * * * /home/ubuntu/src/eo1/cli brightness 5
+0 20 * * * /home/ubuntu/src/eo1/cli brightness 2
 
 # Dim more
-0 22 * * * /home/ubuntu/src/eo1/cli brightness 3
+0 22 * * * /home/ubuntu/src/eo1/cli brightness 1
 
 # Turn off the display at 11 PM
 0 23 * * * /home/ubuntu/src/eo1/cli off
