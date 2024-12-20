@@ -20,6 +20,7 @@ apt-get install -y --no-install-recommends \
   cron \
   wget \
   python3.6 \
+  libgbm-dev \
   unclutter
   # libxcb-dri3-dev \       # im not sure if these helped webkit GPU issues
   # x11proto-dri3-dev \     # maybe install them if chrome is crashing a lot
