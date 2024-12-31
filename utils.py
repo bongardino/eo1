@@ -1,5 +1,9 @@
 import random
 import re
+from datetime import date
+
+FRAME_PATH = os.path.join(base_dir, 'frame.html')
+LOG_PATH = os.path.join(base_dir, 'history.log')
 
 cache = {}
 
@@ -14,7 +18,7 @@ def has_proper_dimensions(width, height):
     aspect_ratio = width / height
     return 0.5 <= aspect_ratio <= 0.6
 
-def replace_url_in_html_file(file_path, new_url):
+def replace_url_in_html_file(new_url, file_path = FRAME_PATH):
     try:
         with open(file_path, 'r') as file:
             file_content = file.read()
@@ -30,3 +34,7 @@ def replace_url_in_html_file(file_path, new_url):
         print(f"Error: File '{file_path}' not found.")
     except Exception as e:
         print(f"An error occurred: {e}")
+
+def append_to_history(content, file_path = LOG_PATH):
+    entry = f"{date.today()} - {content}"
+    open(file_path, 'a').write(entry + '\n')
