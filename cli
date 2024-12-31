@@ -59,6 +59,9 @@ case "$1" in
     # shellcheck disable=SC2016
     sed -i '${s/$/ FAV/}' "$history_file"
     ;;
+  "today")
+    awk '{ print $2 }' history.log
+    ;;
   *)
     echo 'invalid input'
     ;;
