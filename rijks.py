@@ -2,13 +2,11 @@ import json
 import os
 import random
 import urllib.request
-from utils import random_classification, has_proper_dimensions, replace_url_in_html_file
+from utils import random_classification, has_proper_dimensions, replace_url_in_html_file, append_to_history
 
-base_dir = os.path.dirname(__file__)
 API_KEY = os.environ.get("RIJKS_API_KEY")
 BASE_URL = "https://www.rijksmuseum.nl/api/en/collection"
 CLASSES = ['painting', 'print', 'drawing']
-PAGE_PATH = os.path.join(base_dir, 'frame.html')
 
 
 def fetch_artwork_image(api_key):
@@ -57,6 +55,7 @@ if __name__ == "__main__":
     artwork = fetch_artwork_image(API_KEY)
     print(artwork)
     if artwork:
-        replace_url_in_html_file(PAGE_PATH, artwork)
+        replace_url_in_html_file(artwork)
+        append_to_history(artwork)
     else:
         print("No artwork found that meets the requirements.")

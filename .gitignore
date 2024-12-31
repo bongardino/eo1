@@ -1,3 +1,4 @@
 .secrets
 photo.html
 notes
+__pycache__/*
