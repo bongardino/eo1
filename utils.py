@@ -3,6 +3,7 @@ import random
 import re
 from datetime import date
 
+base_dir = os.path.dirname(__file__)
 FRAME_PATH = os.path.join(base_dir, 'frame.html')
 LOG_PATH = os.path.join(base_dir, 'history.log')
 

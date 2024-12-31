@@ -4,12 +4,9 @@ import time
 import urllib.request
 from utils import random_classification, has_proper_dimensions, replace_url_in_html_file, append_to_history
 
-
-base_dir = os.path.dirname(__file__)
 API_KEY = os.environ.get("HARVARD_API_KEY")
 BASE_URL = "https://api.harvardartmuseums.org/object"
 CLASSES = ['paintings', 'prints', 'drawings', 'photographs']
-PAGE_PATH = os.path.join(base_dir, 'frame.html')
 
 def fetch_artworks(page):
     classification = random_classification(CLASSES)

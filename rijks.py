@@ -4,11 +4,9 @@ import random
 import urllib.request
 from utils import random_classification, has_proper_dimensions, replace_url_in_html_file, append_to_history
 
-base_dir = os.path.dirname(__file__)
 API_KEY = os.environ.get("RIJKS_API_KEY")
 BASE_URL = "https://www.rijksmuseum.nl/api/en/collection"
 CLASSES = ['painting', 'print', 'drawing']
-PAGE_PATH = os.path.join(base_dir, 'frame.html')
 
 
 def fetch_artwork_image(api_key):
