@@ -11,6 +11,6 @@ sleep 60
 /usr/bin/unclutter -idle 0.01 &
 
 /home/ubuntu/src/eo1/cli news
-/home/ubuntu/src/eo1/cli brightness 7
+/home/ubuntu/src/eo1/cli brightness 5
 
 popd > /dev/null || exit 1
