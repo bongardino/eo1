@@ -38,5 +38,5 @@ def replace_url_in_html_file(new_url, file_path = FRAME_PATH):
         print(f"An error occurred: {e}")
 
 def append_to_history(content, file_path = LOG_PATH):
-    entry = f"{date.today()} - {content}"
+    entry = f"{date.today()} {content}"
     open(file_path, 'a').write(entry + '\n')
